@@ -12,10 +12,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
-
     /**
      * Display form to create a new user
      *
@@ -37,7 +37,7 @@ class UserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $validation_data = $request->validate([
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
@@ -46,17 +46,21 @@ class UserController extends Controller
             'address' => 'nullable|string|max:255',
         ]);
 
-        User::create([
-            'name' => $request->input('name'),
-            'last_name' => $request->input('last_name'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
-            'role' => $request->input('role'),
-            'address' => $request->input('address'),
-        ]);
+        try {
+            $validation_data['password'] = bcrypt($validation_data['password']);
+            
+            $user = User::create($validation_data);
 
-        return redirect()->route('users.index')
-                       ->with('success', 'User created successfully');
+            Log::info('User created', ['user_id' => $user->id]);
+
+            return redirect()->route('users.index')
+                           ->with('success', 'User created successfully');
+        } catch (\Exception $e) {
+            Log::error('User creation failed', ['error' => $e->getMessage()]);
+
+            return redirect()->route('users.create')
+                           ->withErrors(['error' => 'Could not create user.']);
+        }
     }
 
     /**
@@ -66,24 +70,42 @@ class UserController extends Controller
      */
     public function index(): View
     {
-        $viewData = [];
-        $viewData['title'] = 'Users List';
-        $viewData['users'] = User::all();
-        return view('user.index')->with('viewData', $viewData);
+        try {
+            $viewData = [];
+            $viewData['title'] = 'Users List';
+            $viewData['users'] = User::all();
+
+            return view('user.index')->with('viewData', $viewData);
+        } catch (\Exception $e) {
+            Log::error('User list retrieval failed', ['error' => $e->getMessage()]);
+
+            return view('user.index')->with('viewData', [
+                'title' => 'Users List',
+                'users' => [],
+            ]);
+        }
     }
 
     /**
      * Display details of a specific user
      *
      * @param string $id
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function show(string $id): View
+    public function show(string $id): View|RedirectResponse
     {
-        $viewData = [];
-        $viewData['title'] = 'User Details';
-        $viewData['user'] = User::findOrFail($id);
-        return view('user.show')->with('viewData', $viewData);
+        try {
+            $viewData = [];
+            $viewData['title'] = 'User Details';
+            $viewData['user'] = User::findOrFail($id);
+
+            return view('user.show')->with('viewData', $viewData);
+        } catch (\Exception $e) {
+            Log::warning('User not found', ['id' => $id]);
+
+            return redirect()->route('users.index')
+                           ->withErrors(['error' => 'User not found.']);
+        }
     }
 
     /**
@@ -94,9 +116,18 @@ class UserController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        User::findOrFail($id)->delete();
+        try {
+            User::findOrFail($id)->delete();
 
-        return redirect()->route('users.index')
-                       ->with('success', 'User deleted successfully');
+            Log::info('User deleted', ['user_id' => $id]);
+
+            return redirect()->route('users.index')
+                           ->with('success', 'User deleted successfully');
+        } catch (\Exception $e) {
+            Log::error('User deletion failed', ['id' => $id, 'error' => $e->getMessage()]);
+
+            return redirect()->route('users.index')
+                           ->withErrors(['error' => 'Could not delete user.']);
+        }
     }
 }
