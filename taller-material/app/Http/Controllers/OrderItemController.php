@@ -15,17 +15,6 @@ use Illuminate\Http\RedirectResponse;
 
 class OrderItemController extends Controller
 {
-    /**
-     * Display home page with action buttons
-     *
-     * @return View
-     */
-    public function home(): View
-    {
-        $viewData = [];
-        $viewData['title'] = 'Home';
-        return view('orderitem.home')->with('viewData', $viewData);
-    }
 
     /**
      * Display form to create a new order item

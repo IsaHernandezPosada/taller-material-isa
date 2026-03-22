@@ -15,17 +15,6 @@ use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
-    /**
-     * Display home page with action buttons
-     *
-     * @return View
-     */
-    public function home(): View
-    {
-        $viewData = [];
-        $viewData['title'] = 'Home';
-        return view('user.home')->with('viewData', $viewData);
-    }
 
     /**
      * Display form to create a new user

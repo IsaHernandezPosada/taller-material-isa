@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 class OrderItem extends Model
 {
     use HasFactory;
+    protected $table = 'orderitems';
 
     /**
      * The attributes that are mass assignable.

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderItemController;
 
 // MATERIAL ROUTES
 Route::get('/', [MaterialController::class, 'index'])->name('material.index');
@@ -12,7 +14,6 @@ Route::get('/materials/{id}', [MaterialController::class, 'show'])->name('materi
 Route::delete('/materials/{id}', [MaterialController::class, 'destroy'])->name('material.destroy');
 
 // USER ROUTES
-Route::get('/users/home', [UserController::class, 'home'])->name('users.home');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
@@ -20,7 +21,6 @@ Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
 // ORDERITEM ROUTES
-Route::get('/orderitems/home', [OrderItemController::class, 'home'])->name('orderitems.home');
 Route::get('/orderitems/create', [OrderItemController::class, 'create'])->name('orderitems.create');
 Route::post('/orderitems', [OrderItemController::class, 'store'])->name('orderitems.store');
 Route::get('/orderitems', [OrderItemController::class, 'index'])->name('orderitems.index');
