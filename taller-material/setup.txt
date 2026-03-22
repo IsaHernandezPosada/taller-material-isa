@@ -1,0 +1,72 @@
+Material Workshop – Installation and Technical Documentation
+
+DATABASE
+
+1. Create a new database in phpMyAdmin
+   Name: taller_material
+   Collation: utf8mb4_unicode_ci (default)
+
+CONFIGURATION
+
+2. Open .env file and verify:
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=taller_material
+   DB_USERNAME=root
+   DB_PASSWORD= (leave empty if no password)
+
+INSTALLATION
+
+3. Run the migration:
+   php artisan migrate
+
+4. Start the server:
+   php artisan serve
+
+5. Access the application:
+   http://localhost:8000
+
+HOW IT WORKS
+
+Home Page - Two buttons:
+  - Create Material: Go to form to add new material
+  - List Materials: View all materials in a table
+
+Create Material:
+  - Fill form (name, type, description, color)
+  - Validation: name must be unique, all fields required
+  - On success: redirects to list with message
+
+List Materials:
+  - Shows ID and Name of all materials
+  - Click ID to view full details
+
+Material Details:
+  - Shows all data (name, type, description, color, dates)
+  - Button to delete material
+
+FEATURES
+
+- Create: Form with validation for name, type, description, color
+- Validation: Required fields, unique name constraint in database
+- Read: List view and detail view
+- Delete: Remove material from database with confirmation popup
+  User must confirm before deletion takes effect
+- Security: CSRF tokens on forms, XSS protection
+
+STACK
+
+- Framework: Laravel 12
+- Database: MySQL
+- Frontend: Bootstrap 5.3
+- Template Engine: Blade
+- Language: PHP 8.0+
+
+NOTES
+
+- Only Material class (no relationships)
+- All data types are primitives (string, text)
+- Database tables use snake_case
+- PHP classes use PascalCase
+- All code and comments in English
