@@ -10,3 +10,11 @@ Route::post('/materials', [MaterialController::class, 'save'])->name('material.s
 Route::get('/materials', [MaterialController::class, 'list'])->name('material.list');
 Route::get('/materials/{id}', [MaterialController::class, 'show'])->name('material.show');
 Route::delete('/materials/{id}', [MaterialController::class, 'destroy'])->name('material.destroy');
+
+// USER ROUTES
+Route::get('/users/home', [UserController::class, 'home'])->name('users.home');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
