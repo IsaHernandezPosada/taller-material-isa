@@ -18,3 +18,11 @@ Route::post('/users', [UserController::class, 'store'])->name('users.store');
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+// ORDERITEM ROUTES
+Route::get('/orderitems/home', [OrderItemController::class, 'home'])->name('orderitems.home');
+Route::get('/orderitems/create', [OrderItemController::class, 'create'])->name('orderitems.create');
+Route::post('/orderitems', [OrderItemController::class, 'store'])->name('orderitems.store');
+Route::get('/orderitems', [OrderItemController::class, 'index'])->name('orderitems.index');
+Route::get('/orderitems/{id}', [OrderItemController::class, 'show'])->name('orderitems.show');
+Route::delete('/orderitems/{id}', [OrderItemController::class, 'destroy'])->name('orderitems.destroy');
