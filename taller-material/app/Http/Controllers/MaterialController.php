@@ -26,11 +26,11 @@ class MaterialController extends Controller
         try {
             $viewData = [];
             $viewData['title'] = 'Home';
-            
+
             return view('material.index')->with('viewData', $viewData);
         } catch (\Exception $e) {
             Log::error('Material home page failed', ['error' => $e->getMessage()]);
-            
+
             return view('material.index')->with('viewData', [
                 'title' => 'Home',
             ]);
@@ -46,7 +46,7 @@ class MaterialController extends Controller
     {
         $viewData = [];
         $viewData['title'] = 'Create Material';
-        
+
         return view('material.create')->with('viewData', $viewData);
     }
 

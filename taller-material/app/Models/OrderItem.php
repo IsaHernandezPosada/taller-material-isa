@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 class OrderItem extends Model
 {
     use HasFactory;
+
     protected $table = 'orderitems';
 
     /**
@@ -34,7 +35,7 @@ class OrderItem extends Model
      *
      * @return int
      */
-    public function getId(): int
+    public function get_id(): int
     {
         return $this->id;
     }
@@ -44,7 +45,7 @@ class OrderItem extends Model
      *
      * @return int
      */
-    public function getUnitPrice(): int
+    public function get_unit_price(): int
     {
         return $this->unit_price;
     }
@@ -54,7 +55,7 @@ class OrderItem extends Model
      *
      * @return int
      */
-    public function getQuantity(): int
+    public function get_quantity(): int
     {
         return $this->quantity;
     }
@@ -64,7 +65,7 @@ class OrderItem extends Model
      *
      * @return int
      */
-    public function getSubtotal(): int
+    public function get_subtotal(): int
     {
         return $this->subtotal;
     }
@@ -74,7 +75,7 @@ class OrderItem extends Model
      *
      * @return int
      */
-    public function getOrderId(): int
+    public function get_order_id(): int
     {
         return $this->order_id;
     }
@@ -84,7 +85,7 @@ class OrderItem extends Model
      *
      * @return int
      */
-    public function getPieceId(): int
+    public function get_piece_id(): int
     {
         return $this->piece_id;
     }
@@ -95,7 +96,7 @@ class OrderItem extends Model
      * @param int $unit_price
      * @return void
      */
-    public function setUnitPrice(int $unit_price): void
+    public function set_unit_price(int $unit_price): void
     {
         $this->unit_price = $unit_price;
     }
@@ -106,7 +107,7 @@ class OrderItem extends Model
      * @param int $quantity
      * @return void
      */
-    public function setQuantity(int $quantity): void
+    public function set_quantity(int $quantity): void
     {
         $this->quantity = $quantity;
     }
@@ -117,7 +118,7 @@ class OrderItem extends Model
      * @param int $subtotal
      * @return void
      */
-    public function setSubtotal(int $subtotal): void
+    public function set_subtotal(int $subtotal): void
     {
         $this->subtotal = $subtotal;
     }
@@ -128,7 +129,7 @@ class OrderItem extends Model
      * @param int $order_id
      * @return void
      */
-    public function setOrderId(int $order_id): void
+    public function set_order_id(int $order_id): void
     {
         $this->order_id = $order_id;
     }
@@ -139,7 +140,7 @@ class OrderItem extends Model
      * @param int $piece_id
      * @return void
      */
-    public function setPieceId(int $piece_id): void
+    public function set_piece_id(int $piece_id): void
     {
         $this->piece_id = $piece_id;
     }
@@ -169,8 +170,8 @@ class OrderItem extends Model
      *
      * @return int
      */
-    public function calculateSubtotal(): int
+    public function calculate_subtotal(): int
     {
         return $this->unit_price * $this->quantity;
     }
-}   
+}

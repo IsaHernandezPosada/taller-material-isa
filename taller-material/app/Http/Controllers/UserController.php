@@ -48,7 +48,7 @@ class UserController extends Controller
 
         try {
             $validation_data['password'] = bcrypt($validation_data['password']);
-            
+
             $user = User::create($validation_data);
 
             Log::info('User created', ['user_id' => $user->id]);

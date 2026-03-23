@@ -53,13 +53,12 @@ class User extends Authenticatable
         ];
     }
 
-    
     /**
      * Get the user ID
      *
      * @return int
      */
-    public function getId(): int
+    public function get_id(): int
     {
         return $this->id;
     }
@@ -69,7 +68,7 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function getName(): string
+    public function get_name(): string
     {
         return $this->name;
     }
@@ -79,7 +78,7 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function getLastName(): string
+    public function get_last_name(): string
     {
         return $this->last_name;
     }
@@ -89,7 +88,7 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function getEmail(): string
+    public function get_email(): string
     {
         return $this->email;
     }
@@ -99,7 +98,7 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function getPassword(): string
+    public function get_password(): string
     {
         return $this->password;
     }
@@ -109,7 +108,7 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function getRole(): string
+    public function get_role(): string
     {
         return $this->role;
     }
@@ -119,11 +118,10 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function getAddress(): string
+    public function get_address(): string
     {
         return $this->address ?? '';
     }
-
 
     /**
      * Set the user name
@@ -131,7 +129,7 @@ class User extends Authenticatable
      * @param string $name
      * @return void
      */
-    public function setName(string $name): void
+    public function set_name(string $name): void
     {
         $this->name = $name;
     }
@@ -142,7 +140,7 @@ class User extends Authenticatable
      * @param string $last_name
      * @return void
      */
-    public function setLastName(string $last_name): void
+    public function set_last_name(string $last_name): void
     {
         $this->last_name = $last_name;
     }
@@ -153,7 +151,7 @@ class User extends Authenticatable
      * @param string $email
      * @return void
      */
-    public function setEmail(string $email): void
+    public function set_email(string $email): void
     {
         $this->email = $email;
     }
@@ -164,18 +162,18 @@ class User extends Authenticatable
      * @param string $password
      * @return void
      */
-    public function setPassword(string $password): void
+    public function set_password(string $password): void
     {
         $this->password = $password;
     }
 
     /**
-     * Set the user role 
+     * Set the user role
      *
      * @param string $role
      * @return void
      */
-    public function setRole(string $role): void
+    public function set_role(string $role): void
     {
         $this->role = $role;
     }
@@ -186,7 +184,7 @@ class User extends Authenticatable
      * @param string $address
      * @return void
      */
-    public function setAddress(string $address): void
+    public function set_address(string $address): void
     {
         $this->address = $address;
     }

@@ -1,4 +1,11 @@
 <?php
+/*
+ * Author: Isabella Hernandez Posada
+ * File: Material.php
+ * Description: Material model with getters/setters
+ * Created: 2025-03-22
+ */
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -23,49 +30,96 @@ class Material extends Model
         'updated_at' => 'datetime',
     ];
 
-    // GETTERS
-    public function getId(): int
+    /**
+     * Get the material ID
+     *
+     * @return int
+     */
+    public function get_id(): int
     {
         return $this->attributes['id'];
     }
 
-    public function getName(): string
+    /**
+     * Get the material name
+     *
+     * @return string
+     */
+    public function get_name(): string
     {
         return $this->attributes['name'];
     }
 
-    public function getType(): string
+    /**
+     * Get the material type
+     *
+     * @return string
+     */
+    public function get_type(): string
     {
         return $this->attributes['type'];
     }
 
-    public function getDescription(): string
+    /**
+     * Get the material description
+     *
+     * @return string
+     */
+    public function get_description(): string
     {
         return $this->attributes['description'];
     }
 
-    public function getColor(): string
+    /**
+     * Get the material color
+     *
+     * @return string
+     */
+    public function get_color(): string
     {
         return $this->attributes['color'];
     }
 
-    // SETTERS
-    public function setName(string $name): void
+    /**
+     * Set the material name
+     *
+     * @param string $name
+     * @return void
+     */
+    public function set_name(string $name): void
     {
         $this->attributes['name'] = $name;
     }
 
-    public function setType(string $type): void
+    /**
+     * Set the material type
+     *
+     * @param string $type
+     * @return void
+     */
+    public function set_type(string $type): void
     {
         $this->attributes['type'] = $type;
     }
 
-    public function setDescription(string $description): void
+    /**
+     * Set the material description
+     *
+     * @param string $description
+     * @return void
+     */
+    public function set_description(string $description): void
     {
         $this->attributes['description'] = $description;
     }
 
-    public function setColor(string $color): void
+    /**
+     * Set the material color
+     *
+     * @param string $color
+     * @return void
+     */
+    public function set_color(string $color): void
     {
         $this->attributes['color'] = $color;
     }
